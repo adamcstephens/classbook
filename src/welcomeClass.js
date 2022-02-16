@@ -1,10 +1,10 @@
 import { DisplayName } from "./displayName"
 
-export const WelcomeClass = ({ people }) => {
+export const WelcomeClass = ({ initialPeople }) => {
   return (
     <>
-      {people.map((person, index) => (
-        <DisplayName person={person} key={index} />
+      {initialPeople.map((person) => (
+        <DisplayName person={person} key={person.id} />
       ))}
     </>
   )

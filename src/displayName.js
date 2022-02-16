@@ -1,7 +1,7 @@
-export const DisplayName = ({ person: { name, lastName, morning } }) => {
+export const DisplayName = ({ person }) => {
   return (
     <h2>
-      {morning ? "Good morning" : "Hello"}, {name} {lastName}!
+      {person.morning ? "Good morning" : "Hello"}, {person.name} {person.lastName}!
     </h2>
   )
 }
