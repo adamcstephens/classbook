@@ -1,7 +1,12 @@
-export const DisplayName = ({ person }) => {
+export const DisplayName = ({ person, toggleRegistered }) => {
   return (
-    <h2>
-      {person.morning ? "Good morning" : "Hello"}, {person.name} {person.lastName}!
-    </h2>
+    <tr>
+      <td>
+        {person.name} {person.lastName}
+      </td>
+      <td>
+        <button onClick={() => toggleRegistered(person.id)}>{person.registered ? "Unregister" : "Register"}</button>
+      </td>
+    </tr>
   )
 }

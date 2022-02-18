@@ -2,6 +2,7 @@ import { useState } from "react"
 
 export function Counter({ initialCount }) {
   const [count, setCount] = useState(initialCount)
+
   return (
     <>
       Count: {count}
