@@ -1,4 +1,4 @@
-export const DisplayName = ({ person, toggleRegistered }) => {
+export const DisplayName = ({ person, toggleRegistered, removePerson }) => {
   return (
     <tr>
       <td>
@@ -6,6 +6,7 @@ export const DisplayName = ({ person, toggleRegistered }) => {
       </td>
       <td>
         <button onClick={() => toggleRegistered(person.id)}>{person.registered ? "Unregister" : "Register"}</button>
+        <button onClick={() => removePerson(person.id)}>Delete</button>
       </td>
     </tr>
   )
