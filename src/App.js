@@ -1,7 +1,11 @@
 import "./App.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 import { WelcomeClass } from "./welcomeClass"
 import { useState } from "react"
 import { RegisteredUsers } from "./registeredUsers"
+import { AddPerson } from "./addPerson"
+import Container from "react-bootstrap/Container"
+import Stack from "react-bootstrap/Stack"
 
 const initialPeople = [
   {
@@ -23,7 +27,6 @@ const initialPeople = [
 
 function App() {
   const [people, setPeople] = useState(initialPeople)
-  const [newPerson, setNewPerson] = useState("")
 
   const toggleRegistered = (id) => {
     console.log("Changing " + id)
@@ -42,34 +45,24 @@ function App() {
     return people.length
   }
 
-  const submit = (e) => {
-    e.preventDefault()
-    addPerson(newPerson)
-    setNewPerson("")
-  }
   const addPerson = (name) => {
     const [first, last] = name.split(" ")
     setPeople((currentPeople) => [...currentPeople, { name: first, lastName: last, id: findNextId() }])
   }
   const removePerson = (id) => {
-    setPeople((currentPeople) => currentPeople.filter((_, index) => index != id))
+    setPeople((currentPeople) => currentPeople.filter((person) => person.id !== id))
   }
 
   return (
-    <div className="App">
-      <form onSubmit={submit}>
-        <input
-          value={newPerson}
-          onChange={(event) => setNewPerson(event.target.value)}
-          type="text"
-          placeholder="New person..."
-          required
-        />
-        <button>Add</button>
-      </form>
-      <WelcomeClass people={people} toggleRegistered={toggleRegistered} removePerson={removePerson} />
-      <RegisteredUsers people={people} />
-    </div>
+    <>
+      <Container>
+        <Stack gap={3}>
+          <AddPerson handleNewPerson={addPerson} />
+          <WelcomeClass people={people} toggleRegistered={toggleRegistered} removePerson={removePerson} />
+          <RegisteredUsers people={people} />
+        </Stack>
+      </Container>
+    </>
   )
 }
 

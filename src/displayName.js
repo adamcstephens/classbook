@@ -1,12 +1,19 @@
+import Button from "react-bootstrap/Button"
+
 export const DisplayName = ({ person, toggleRegistered, removePerson }) => {
   return (
     <tr>
+      <td>{person.name}</td>
+      <td>{person.lastName}</td>
       <td>
-        {person.name} {person.lastName}
+        <Button onClick={() => toggleRegistered(person.id)} variant={person.registered ? "warning" : "primary"}>
+          {person.registered ? "Unregister" : "Register"}
+        </Button>
       </td>
       <td>
-        <button onClick={() => toggleRegistered(person.id)}>{person.registered ? "Unregister" : "Register"}</button>
-        <button onClick={() => removePerson(person.id)}>Delete</button>
+        <Button onClick={() => removePerson(person.id)} variant="danger">
+          Delete
+        </Button>
       </td>
     </tr>
   )
