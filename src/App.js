@@ -1,14 +1,13 @@
 import "./App.css"
 import { WelcomeClass } from "./welcomeClass"
-import { Counter } from "./counter"
 import { useState } from "react"
+import { RegisteredUsers } from "./registeredUsers"
 
 const initialPeople = [
   {
     id: 0,
     name: "John",
     lastName: "Smith",
-    morning: true,
   },
   {
     id: 1,
@@ -69,7 +68,7 @@ function App() {
         <button>Add</button>
       </form>
       <WelcomeClass people={people} toggleRegistered={toggleRegistered} removePerson={removePerson} />
-      {/* <Counter initialCount={0} /> */}
+      <RegisteredUsers people={people} />
     </div>
   )
 }
