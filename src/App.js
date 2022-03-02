@@ -6,6 +6,7 @@ import { RegisteredUsers } from "./registeredUsers"
 import { AddPerson } from "./addPerson"
 import Container from "react-bootstrap/Container"
 import Stack from "react-bootstrap/Stack"
+import { v4 as uuidv4 } from "uuid"
 
 const initialPeople = [
   {
@@ -41,13 +42,13 @@ function App() {
     })
   }
 
-  const findNextId = () => {
-    return people.length
+  const getNewId = () => {
+    return uuidv4()
   }
 
   const addPerson = (name) => {
     const [first, last] = name.split(" ")
-    setPeople((currentPeople) => [...currentPeople, { name: first, lastName: last, id: findNextId() }])
+    setPeople((currentPeople) => [...currentPeople, { name: first, lastName: last, id: getNewId() }])
   }
   const removePerson = (id) => {
     setPeople((currentPeople) => currentPeople.filter((person) => person.id !== id))
