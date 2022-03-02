@@ -17,18 +17,16 @@ export const RegisteredUsers = ({ people }) => {
   return (
     <>
       <h2>Registered Users</h2>
-      <hl />
+      <hr />
       <Table striped>
         <tbody>
           {people.map((person, index) => {
             if (person.registered) {
               return (
-                <>
-                  <tr>
-                    <td>{person.name}</td>
-                    <td>{person.lastName}</td>
-                  </tr>
-                </>
+                <tr key={person.id}>
+                  <td>{person.name}</td>
+                  <td>{person.lastName}</td>
+                </tr>
               )
             }
           })}
