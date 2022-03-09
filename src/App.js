@@ -7,12 +7,16 @@ import { AddPerson } from "./addPerson"
 import Container from "react-bootstrap/Container"
 import Stack from "react-bootstrap/Stack"
 import { v4 as uuidv4 } from "uuid"
+import { Route, Routes } from "react-router-dom"
+import { AppNav } from "./appnav"
+import { About } from "./routes/about"
 
 const initialPeople = [
   {
     id: 0,
     name: "John",
     lastName: "Smith",
+    classes: ["modern web app"],
   },
   {
     id: 1,
@@ -56,13 +60,23 @@ function App() {
 
   return (
     <>
-      <Container>
-        <Stack gap={3}>
-          <AddPerson handleNewPerson={addPerson} />
-          <WelcomeClass people={people} toggleRegistered={toggleRegistered} removePerson={removePerson} />
-          <RegisteredUsers people={people} />
-        </Stack>
-      </Container>
+      <Routes>
+        <Route path="/" element={<AppNav />}>
+          <Route path="about" element={<About />} />
+          <Route path="registered" element={<RegisteredUsers people={people} />} />
+          <Route
+            index
+            element={
+              <Container>
+                <Stack gap={3}>
+                  <AddPerson handleNewPerson={addPerson} />
+                  <WelcomeClass people={people} toggleRegistered={toggleRegistered} removePerson={removePerson} />
+                </Stack>
+              </Container>
+            }
+          />
+        </Route>
+      </Routes>
     </>
   )
 }
