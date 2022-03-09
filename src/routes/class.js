@@ -9,7 +9,7 @@ export const Class = ({ people }) => {
 
   useEffect(() => {
     setCurrentClass(people.filter((person) => person.classes && person.classes.includes(className)))
-  }, [people])
+  }, [className, people])
 
   return (
     <>

@@ -24,12 +24,13 @@ const initialPeople = [
     id: 1,
     name: "Michael",
     lastName: "Barber",
+    classes: ["Creative Coding"],
   },
   {
     id: 2,
     name: "Sally",
     lastName: "Turner",
-    classes: ["Modern Web App"],
+    classes: ["Modern Web App", "Interdisciplinary Projects"],
   },
 ]
 
