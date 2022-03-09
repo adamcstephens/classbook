@@ -10,13 +10,15 @@ import { v4 as uuidv4 } from "uuid"
 import { Route, Routes } from "react-router-dom"
 import { AppNav } from "./appnav"
 import { About } from "./routes/about"
+import { Classes } from "./routes/classes"
+import { Class } from "./routes/class"
 
 const initialPeople = [
   {
     id: 0,
     name: "John",
     lastName: "Smith",
-    classes: ["modern web app"],
+    classes: ["Modern Web App"],
   },
   {
     id: 1,
@@ -27,6 +29,7 @@ const initialPeople = [
     id: 2,
     name: "Sally",
     lastName: "Turner",
+    classes: ["Modern Web App"],
   },
 ]
 
@@ -60,23 +63,26 @@ function App() {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<AppNav />}>
-          <Route path="about" element={<About />} />
-          <Route path="registered" element={<RegisteredUsers people={people} />} />
-          <Route
-            index
-            element={
-              <Container>
-                <Stack gap={3}>
+      <Container>
+        <Routes>
+          <Route path="/" element={<AppNav />}>
+            <Route path="classes" element={<Classes people={people} />}>
+              <Route path=":className" element={<Class people={people} />} />
+            </Route>
+            <Route path="about" element={<About />} />
+            <Route path="registered" element={<RegisteredUsers people={people} />} />
+            <Route
+              index
+              element={
+                <>
                   <AddPerson handleNewPerson={addPerson} />
                   <WelcomeClass people={people} toggleRegistered={toggleRegistered} removePerson={removePerson} />
-                </Stack>
-              </Container>
-            }
-          />
-        </Route>
-      </Routes>
+                </>
+              }
+            />
+          </Route>
+        </Routes>
+      </Container>
     </>
   )
 }

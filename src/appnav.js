@@ -11,6 +11,9 @@ export const AppNav = () => {
         <Nav.Link as={NavLink} to="/registered">
           Registered
         </Nav.Link>
+        <Nav.Link as={NavLink} to="/classes">
+          Classes
+        </Nav.Link>
         <Nav.Link as={NavLink} to="/about">
           About
         </Nav.Link>

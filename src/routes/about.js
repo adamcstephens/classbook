@@ -1,7 +1,8 @@
 export const About = () => {
   return (
     <>
-      <p>My About Page</p>
+      <h2>Made by Adam</h2>
+      <img src="bee.jpg" />
     </>
   )
 }
