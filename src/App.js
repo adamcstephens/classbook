@@ -12,28 +12,6 @@ import { About } from "./routes/about"
 import { Classes } from "./routes/classes"
 import { Class } from "./routes/class"
 
-const initialPeople = [
-  {
-    id: 0,
-    name: "John",
-    lastName: "Smith",
-    registered: true,
-    classes: ["Modern Web App"],
-  },
-  {
-    id: 1,
-    name: "Michael",
-    lastName: "Barber",
-    classes: ["Creative Coding"],
-  },
-  {
-    id: 2,
-    name: "Sally",
-    lastName: "Turner",
-    classes: ["Modern Web App", "Interdisciplinary Projects"],
-  },
-]
-
 function App() {
   const [people, setPeople] = useState(initialPeople)
   const [classes, setClasses] = useState([])
