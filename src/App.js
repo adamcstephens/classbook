@@ -1,7 +1,7 @@
 import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { WelcomeClass } from "./welcomeClass"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { RegisteredUsers } from "./registeredUsers"
 import { AddPerson } from "./addPerson"
 import Container from "react-bootstrap/Container"
@@ -18,6 +18,7 @@ const initialPeople = [
     id: 0,
     name: "John",
     lastName: "Smith",
+    registered: true,
     classes: ["Modern Web App"],
   },
   {
@@ -36,10 +37,22 @@ const initialPeople = [
 
 function App() {
   const [people, setPeople] = useState(initialPeople)
+  let [classes, setClasses] = useState([])
+
+  useEffect(() => {
+    setClasses([
+      ...new Set(
+        people.reduce((acc, person) => {
+          if (person.classes) {
+            return acc.concat(person.classes)
+          }
+          return acc
+        }, [])
+      ),
+    ])
+  }, [people])
 
   const toggleRegistered = (id) => {
-    console.log("Changing " + id)
-
     setPeople((currentPeople) => {
       return currentPeople.map((person) => {
         if (person.id === id) {
@@ -62,12 +75,31 @@ function App() {
     setPeople((currentPeople) => currentPeople.filter((person) => person.id !== id))
   }
 
+  const addPersonClass = (id, newClass) => {
+    setPeople((currentPeople) => {
+      return currentPeople.map((person) => {
+        let newClasses = []
+        if (person.id === id) {
+          if (!person.classes.length) {
+            newClasses = [newClass]
+          } else if (person.classes.includes(newClass)) {
+            newClasses = person.classes
+          } else {
+            newClasses = [...person.classes, newClass]
+          }
+          return { ...person, classes: newClasses }
+        }
+        return person
+      })
+    })
+  }
+
   return (
     <>
       <Container>
         <Routes>
           <Route path="/" element={<AppNav />}>
-            <Route path="classes" element={<Classes people={people} />}>
+            <Route path="classes" element={<Classes classes={classes} />}>
               <Route path=":className" element={<Class people={people} />} />
             </Route>
             <Route path="about" element={<About />} />
@@ -77,7 +109,13 @@ function App() {
               element={
                 <>
                   <AddPerson handleNewPerson={addPerson} />
-                  <WelcomeClass people={people} toggleRegistered={toggleRegistered} removePerson={removePerson} />
+                  <WelcomeClass
+                    people={people}
+                    toggleRegistered={toggleRegistered}
+                    removePerson={removePerson}
+                    existingClasses={classes}
+                    addPersonClass={addPersonClass}
+                  />
                 </>
               }
             />

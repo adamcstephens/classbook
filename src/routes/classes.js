@@ -1,23 +1,7 @@
-import { useEffect, useState } from "react"
 import { Table } from "react-bootstrap"
 import { Link, Outlet } from "react-router-dom"
 
-export const Classes = ({ people }) => {
-  let [classes, setClasses] = useState([])
-
-  useEffect(() => {
-    setClasses([
-      ...new Set(
-        people.reduce((acc, person) => {
-          if (person.classes) {
-            return acc.concat(person.classes)
-          }
-          return acc
-        }, [])
-      ),
-    ])
-  }, [people])
-
+export const Classes = ({ classes }) => {
   return (
     <>
       <h2>Class Roster</h2>
