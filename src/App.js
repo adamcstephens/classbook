@@ -36,7 +36,7 @@ const initialPeople = [
 
 function App() {
   const [people, setPeople] = useState(initialPeople)
-  let [classes, setClasses] = useState([])
+  const [classes, setClasses] = useState([])
 
   useEffect(() => {
     setClasses([
