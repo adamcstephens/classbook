@@ -1,11 +1,10 @@
 import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import { WelcomeClass } from "./welcomeClass"
+import { ClassList } from "./routes/classList"
 import { useEffect, useState } from "react"
-import { RegisteredUsers } from "./registeredUsers"
+import { RegisteredUsers } from "./routes/registeredUsers"
 import { AddPerson } from "./addPerson"
 import Container from "react-bootstrap/Container"
-import Stack from "react-bootstrap/Stack"
 import { v4 as uuidv4 } from "uuid"
 import { Route, Routes } from "react-router-dom"
 import { AppNav } from "./appnav"
@@ -109,7 +108,7 @@ function App() {
               element={
                 <>
                   <AddPerson handleNewPerson={addPerson} />
-                  <WelcomeClass
+                  <ClassList
                     people={people}
                     toggleRegistered={toggleRegistered}
                     removePerson={removePerson}
