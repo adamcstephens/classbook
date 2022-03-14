@@ -1,0 +1,31 @@
+{
+  "todos": [
+    {
+      "id": 0,
+      "description": "Shovel the snow",
+      "complete": false,
+      "categories": [
+        "house",
+        "winter"
+      ]
+    },
+    {
+      "id": 1,
+      "description": "Wash the car",
+      "complete": true,
+      "categories": [
+        "house",
+        "chores"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Bake birthday cake",
+      "complete": true,
+      "categories": [
+        "house",
+        "family"
+      ]
+    }
+  ]
+}

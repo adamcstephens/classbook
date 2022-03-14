@@ -11,10 +11,18 @@ import { AppNav } from "./appnav"
 import { About } from "./routes/about"
 import { Classes } from "./routes/classes"
 import { Class } from "./routes/class"
+import api from "./api"
 
 function App() {
-  const [people, setPeople] = useState(initialPeople)
+  const [people, setPeople] = useState([])
   const [classes, setClasses] = useState([])
+
+  useEffect(() => {
+    api.get("/people").then((response) => {
+      setPeople(response.data)
+      console.log(response.data)
+    })
+  }, [])
 
   useEffect(() => {
     setClasses([
@@ -57,7 +65,7 @@ function App() {
       return currentPeople.map((person) => {
         let newClasses = []
         if (person.id === id) {
-          if (!person.classes.length) {
+          if (!person.classes || !person.classes.length) {
             newClasses = [newClass]
           } else if (person.classes.includes(newClass)) {
             newClasses = person.classes

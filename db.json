@@ -5,19 +5,34 @@
       "name": "John",
       "lastName": "Smith",
       "registered": true,
-      "classes": ["Modern Web App"]
+      "classes": [
+        "Modern Web App"
+      ]
     },
     {
       "id": 1,
       "name": "Michael",
       "lastName": "Barber",
-      "classes": ["Creative Coding"]
+      "classes": [
+        "Creative Coding"
+      ]
     },
     {
       "id": 2,
       "name": "Sally",
       "lastName": "Turner",
-      "classes": ["Modern Web App", "Interdisciplinary Projects"]
+      "classes": [
+        "Modern Web App",
+        "Interdisciplinary Projects"
+      ]
+    },
+    {
+      "name": "Jack",
+      "lastName": "Frost",
+      "classes": [
+        "Human Computer Interaction"
+      ],
+      "id": 50
     }
   ]
 }
