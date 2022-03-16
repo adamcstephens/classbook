@@ -17,13 +17,14 @@ function App() {
   const [people, setPeople] = useState([])
   const [classes, setClasses] = useState([])
 
+  // get initial data from api on startup
   useEffect(() => {
     api.get("/people").then((response) => {
       setPeople(response.data)
-      console.log(response.data)
     })
   }, [])
 
+  // update list of classes
   useEffect(() => {
     setClasses([
       ...new Set(
@@ -37,46 +38,74 @@ function App() {
     ])
   }, [people])
 
-  const toggleRegistered = (id) => {
-    setPeople((currentPeople) => {
-      return currentPeople.map((person) => {
-        if (person.id === id) {
-          return { ...person, registered: !person.registered }
-        }
-        return person
+  const toggleRegistered = async (id) => {
+    const currentPerson = people.filter((person) => person.id === id)[0]
+    const resp = await api.put(`/people/${id}`, { ...currentPerson, registered: !currentPerson.registered })
+
+    if (resp.status !== 200) {
+      throw new Error(`Failed to update user id ${id}`)
+    } else {
+      setPeople((currentPeople) => {
+        return currentPeople.map((person) => {
+          if (person.id === id) {
+            return resp.data
+          }
+          return person
+        })
       })
-    })
+    }
   }
 
   const getNewId = () => {
     return uuidv4()
   }
 
-  const addPerson = (name) => {
+  const addPerson = async (name) => {
     const [first, last] = name.split(" ")
-    setPeople((currentPeople) => [...currentPeople, { name: first, lastName: last, id: getNewId(), classes: [] }])
+    const newPerson = { name: first, lastName: last, id: getNewId(), classes: [] }
+    const resp = await api.post(`/people/`, newPerson)
+
+    if (resp.status !== 201) {
+      throw new Error(`Failed to create user ${newPerson}`)
+    } else {
+      setPeople((currentPeople) => [...currentPeople, resp.data])
+    }
   }
-  const removePerson = (id) => {
-    setPeople((currentPeople) => currentPeople.filter((person) => person.id !== id))
+  const removePerson = async (id) => {
+    const resp = await api.delete(`/people/${id}`)
+
+    if (resp.status !== 200) {
+      throw new Error(`Failed to delete user id ${id}`)
+    } else {
+      setPeople((currentPeople) => currentPeople.filter((person) => person.id !== id))
+    }
   }
 
-  const addPersonClass = (id, newClass) => {
-    setPeople((currentPeople) => {
-      return currentPeople.map((person) => {
-        let newClasses = []
-        if (person.id === id) {
-          if (!person.classes || !person.classes.length) {
-            newClasses = [newClass]
-          } else if (person.classes.includes(newClass)) {
-            newClasses = person.classes
-          } else {
-            newClasses = [...person.classes, newClass]
+  const addPersonClass = async (id, newClass) => {
+    const currentPerson = people.filter((person) => person.id === id)[0]
+    let newClasses = []
+    if (!currentPerson.classes || !currentPerson.classes.length) {
+      newClasses = [newClass]
+    } else if (currentPerson.classes.includes(newClass)) {
+      newClasses = currentPerson.classes
+    } else {
+      newClasses = [...currentPerson.classes, newClass]
+    }
+
+    const resp = await api.put(`/people/${id}`, { ...currentPerson, classes: newClasses })
+
+    if (resp.status !== 200) {
+      throw new Error(`Failed to update user id ${id}`)
+    } else {
+      setPeople((currentPeople) => {
+        return currentPeople.map((person) => {
+          if (person.id === id) {
+            return resp.data
           }
-          return { ...person, classes: newClasses }
-        }
-        return person
+          return person
+        })
       })
-    })
+    }
   }
 
   return (
