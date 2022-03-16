@@ -1,38 +1,21 @@
 {
   "people": [
     {
-      "id": 0,
-      "name": "John",
-      "lastName": "Smith",
-      "registered": true,
-      "classes": [
-        "Modern Web App"
-      ]
-    },
-    {
-      "id": 1,
-      "name": "Michael",
-      "lastName": "Barber",
+      "name": "Jack",
+      "lastName": "Frost",
+      "id": "87373a2b-8cbb-4d2c-ae6b-fbb2e93a531d",
       "classes": [
         "Creative Coding"
       ]
     },
     {
-      "id": 2,
-      "name": "Sally",
-      "lastName": "Turner",
+      "name": "Fred",
+      "lastName": "Johnson",
+      "id": "c3ac15fd-9132-4119-8e28-54619f7fa959",
+      "registered": true,
       "classes": [
-        "Modern Web App",
-        "Interdisciplinary Projects"
+        "Modern Web App"
       ]
-    },
-    {
-      "name": "Jack",
-      "lastName": "Frost",
-      "classes": [
-        "Human Computer Interaction"
-      ],
-      "id": 50
     }
   ]
 }
