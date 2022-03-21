@@ -69,7 +69,7 @@ function App() {
 
   const addPerson = (name) => {
     const [first, last] = name.split(" ")
-    setPeople((currentPeople) => [...currentPeople, { name: first, lastName: last, id: getNewId() }])
+    setPeople((currentPeople) => [...currentPeople, { name: first, lastName: last, id: getNewId(), classes: [] }])
   }
   const removePerson = (id) => {
     setPeople((currentPeople) => currentPeople.filter((person) => person.id !== id))
