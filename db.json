@@ -1,0 +1,21 @@
+{
+  "people": [
+    {
+      "name": "Jack",
+      "lastName": "Frost",
+      "id": "87373a2b-8cbb-4d2c-ae6b-fbb2e93a531d",
+      "classes": [
+        "Creative Coding"
+      ]
+    },
+    {
+      "name": "Fred",
+      "lastName": "Johnson",
+      "id": "c3ac15fd-9132-4119-8e28-54619f7fa959",
+      "registered": true,
+      "classes": [
+        "Modern Web App"
+      ]
+    }
+  ]
+}

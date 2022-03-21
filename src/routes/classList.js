@@ -1,7 +1,7 @@
-import { DisplayName } from "./displayName"
+import { DisplayName } from "../displayName"
 import Table from "react-bootstrap/Table"
 
-export const WelcomeClass = ({ people, toggleRegistered, removePerson, existingClasses, addPersonClass }) => {
+export const ClassList = ({ people, toggleRegistered, removePerson, existingClasses, addPersonClass }) => {
   if (people.length === 0) {
     return (
       <>
