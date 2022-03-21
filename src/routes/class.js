@@ -16,8 +16,8 @@ export const Class = ({ people }) => {
       <h2>{className}</h2>
       <Table striped>
         <tbody>
-          {currentClass.map((person, index) => (
-            <tr key={index}>
+          {currentClass.map((person) => (
+            <tr key={person.id}>
               <td>{person.name}</td>
               <td>{person.lastName}</td>
             </tr>

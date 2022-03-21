@@ -23,7 +23,9 @@ export const AddPerson = ({ handleNewPerson }) => {
           <Col sm={8}>
             <Form.Control
               placeholder={defaultPlaceholder}
-              onChange={(event) => setNewPerson(event.target.value)}
+              onChange={(event) => {
+                setNewPerson(event.target.value)
+              }}
               value={newPerson}
             />
           </Col>
