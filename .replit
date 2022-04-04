@@ -1,0 +1,4 @@
+run = "sh start.sh"
+
+[packager]
+language = "nodejs-npm"
