@@ -29,6 +29,7 @@ export const RegisteredUsers = ({ people }) => {
                 </tr>
               )
             }
+            return <></>
           })}
         </tbody>
       </Table>
