@@ -2,7 +2,7 @@ export const About = () => {
   return (
     <>
       <h2>Made by Adam</h2>
-      <img src="bee.jpg" />
+      <img src="bee.jpg" alt="bees are amazing" />
     </>
   )
 }
