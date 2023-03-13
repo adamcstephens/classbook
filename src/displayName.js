@@ -21,7 +21,7 @@ export const DisplayName = ({ person, toggleRegistered, removePerson, existingCl
           <AutoComplete suggestions={existingClasses} onSubmitUpdate={autocompleteSubmit} />
         </Card.Body>
         <ListGroup>
-          {person.classes.map((cl, index) => {
+          {(person.classes || []).map((cl, index) => {
             return <ListGroup.Item key={index}>{cl}</ListGroup.Item>
           })}
         </ListGroup>
